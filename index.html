@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OM Information System — Closed</title>
+<title>YSSE OM Information System — Closed</title>
 <meta name="description" content="Notice: the YSSE OM Information System is no longer available.">
 <meta name="robots" content="noindex">
 
@@ -55,6 +55,31 @@
   .brand{
     font-size:17px;
     font-weight:600;
+  }
+
+  .header-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .print-btn{
+    background:transparent;
+    border:1px solid rgba(255,255,255,.22);
+    color:#DCE9DD;
+    font-size:12px;
+    font-weight:500;
+    font-family:inherit;
+    padding:6px 13px;
+    border-radius:6px;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .print-btn:hover{
+    background:rgba(255,255,255,.08);
+    color:#fff;
   }
 
   .status-pill{
@@ -119,7 +144,7 @@
   .doc{
     background:var(--paper);
     border:1px solid var(--rule);
-    padding:38px 36px 30px;
+    padding:32px 36px 30px;
     position:relative;
     overflow:hidden;
   }
@@ -130,6 +155,24 @@
     top:0;left:0;right:0;
     height:4px;
     background:var(--red);
+  }
+
+  .doc-ref-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:12px;
+    margin-bottom:20px;
+    font-family:"SFMono-Regular",Consolas,monospace;
+    font-size:11px;
+    letter-spacing:.03em;
+    color:var(--ink-soft);
+  }
+  .doc-ref-row .ref{
+    font-weight:600;
+    color:var(--green-800);
   }
 
   .doc-content{
@@ -163,6 +206,62 @@
   dt{color:var(--ink-soft);}
   dd{margin:0;font-weight:600;}
   dd.status-red{color:var(--red);}
+
+  .doc-actions{
+    margin-top:22px;
+    padding-top:16px;
+    border-top:1px solid var(--rule);
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    position:relative;
+    z-index:3;
+  }
+
+  .btn-action{
+    background:#FAF8F5;
+    border:1px solid var(--rule);
+    color:var(--ink);
+    font-size:12.5px;
+    font-weight:500;
+    font-family:inherit;
+    padding:6px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .btn-action:hover{background:#EAF0E9;border-color:#C5D8C7;}
+
+  .contact-link{
+    color:var(--green-800);
+    font-size:12.5px;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+  }
+  .contact-link:hover{text-decoration:underline;}
+
+  #copy-toast{
+    display:none;
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%);
+    background:var(--green-900);
+    color:#fff;
+    font-size:13px;
+    font-weight:500;
+    padding:10px 20px;
+    border-radius:8px;
+    box-shadow:0 6px 20px rgba(0,0,0,.2);
+    z-index:999;
+  }
 
   /* stamp */
   .stamp{
@@ -228,15 +327,56 @@
   footer .built-by{
     font-size:15.5px;
     color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:6px;
   }
   footer .built-by strong{
     color:var(--red);
     font-weight:700;
   }
+  .linkedin-link{
+    color:var(--red);
+    text-decoration:underline;
+    text-decoration-thickness:1.5px;
+    text-underline-offset:4px;
+    font-weight:700;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:2px 6px;
+    border-radius:4px;
+  }
+  .linkedin-link:hover{
+    color:var(--red-soft);
+    background:rgba(158,43,37,.08);
+  }
+  .linkedin-link svg.li-icon{
+    width:15px;height:15px;
+    fill:#0A66C2;
+    flex-shrink:0;
+  }
+  .linkedin-link .ext-icon{
+    width:12px;height:12px;
+    stroke:currentColor;
+    fill:none;
+  }
+
+  @media print{
+    header .header-actions .print-btn,
+    .status-pill{display:none;}
+    body{background:#fff;}
+    main{padding:0;}
+    .doc{border:1px solid #999;}
+    .stamp{opacity:.55;}
+  }
 
   @media (max-width:520px){
     main{padding:44px 16px 32px;}
-    .doc{padding:30px 22px 24px;}
+    .doc{padding:26px 22px 24px;}
+    .doc-ref-row{flex-direction:column;gap:2px;}
     .stamp{width:190px;height:190px;}
     .stamp-ring{border-width:4px;}
     .stamp-ring::before{inset:9px;border-width:1.5px;}
@@ -251,7 +391,17 @@
 
 <header>
   <div class="brand">YSSE OM Information System</div>
-  <div class="status-pill"><span class="dot"></span>Closed</div>
+  <div class="header-actions">
+    <button class="print-btn" onclick="window.print()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+      <span>Print</span>
+    </button>
+    <div class="status-pill"><span class="dot"></span>Closed</div>
+  </div>
 </header>
 
 <main>
@@ -261,6 +411,11 @@
 
     <div class="doc-wrap">
       <div class="doc">
+        <div class="doc-ref-row">
+          <span class="ref">DOC REF: YSSE/OM/2026/0917-OFFLINE</span>
+          <span>STATUS: FINAL</span>
+        </div>
+
         <div class="doc-content">
         <p>Effective 17 September 2026, the OM Information System has been taken
         offline. Evaluations, weekly activity, tasks, disciplinary records and
@@ -276,6 +431,24 @@
           <dt>Effective</dt><dd>17 September 2026</dd>
           <dt>Enquiries</dt><dd>Operations Management Department</dd>
         </dl>
+        </div>
+
+        <div class="doc-actions">
+          <button class="btn-action" id="copy-btn" onclick="copyNoticeText()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="copy-btn-text">Copy Notice</span>
+          </button>
+
+          <a href="mailto:ysse.operations@gmail.com" class="contact-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>ysse.operations@gmail.com</span>
+          </a>
         </div>
       </div>
 
@@ -293,8 +466,46 @@
 
 <footer>
   <div class="batch">YSSE · Batch 16</div>
-  <div class="built-by">Designed and built by <strong>Md. Sazid Ahmed Pobon</strong></div>
+  <div class="built-by">
+    <span>Designed and built by</span>
+    <a class="linkedin-link" href="https://www.linkedin.com/in/md-sazid-ahmed-pobon/" target="_blank" rel="noopener noreferrer">
+      <svg class="li-icon" viewBox="0 0 24 24">
+        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.6a1.65 1.65 0 1 0 0 3.3 1.65 1.65 0 0 0 0-3.3Z"/>
+      </svg>
+      <strong>Md. Sazid Ahmed Pobon</strong>
+      <svg class="ext-icon" viewBox="0 0 24 24">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+    </a>
+  </div>
 </footer>
+
+<div id="copy-toast">Notice text copied to clipboard</div>
+
+<script>
+  function copyNoticeText() {
+    const text = "YSSE OM Information System — Official Notice\n" +
+      "Status: Closed\n" +
+      "Effective Date: 17 September 2026\n" +
+      "Department: Operations Management Department, YSSE (Batch 16)\n" +
+      "Details: Effective 17 September 2026, the OM Information System has been taken offline. Evaluations, weekly activity, tasks, disciplinary records and progress tracking are no longer accessible through this system. Records and workflows continue through the department's process used prior to this system's introduction.";
+
+    navigator.clipboard.writeText(text).then(function () {
+      const btnText = document.getElementById('copy-btn-text');
+      const toast = document.getElementById('copy-toast');
+      if (btnText) btnText.textContent = 'Copied!';
+      if (toast) {
+        toast.style.display = 'block';
+        setTimeout(function () {
+          toast.style.display = 'none';
+          if (btnText) btnText.textContent = 'Copy Notice';
+        }, 2400);
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
